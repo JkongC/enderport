@@ -17,7 +17,7 @@ public class ModItems {
 
     public static final Item ENDERPORT_STICK = registerItem(
             "enderport_stick",
-            new EnderportStick());
+            new EnderportStickC());
 
     public static final Item POWDER_OF_TWIST = registerItem(
             "powder_of_twist",

@@ -12,9 +12,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class EnderportStick extends SwordItem {
+public class EnderportStickC extends SwordItem {
 
-    public EnderportStick() {
+    public EnderportStickC() {
         super(ToolMaterials.DIAMOND,new Settings());
     }
 
