@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#P#",
+        "PNP",
+        "#P#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:amethyst_shard"
+        },
+        "P": {
+            "item": "enderport:powder_of_twist"
+        },
+        "N": {
+            "item": "minecraft:nether_star"
+        }
+    },
+    "result": {
+        "id": "enderport:crystal_of_dimension",
+        "count": 1
+    },
+    "group": "INGREDIENT"
+}

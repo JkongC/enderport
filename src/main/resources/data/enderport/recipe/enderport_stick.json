@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    " C ",
+    " C "
+  ],
+  "key": {
+    "B": {
+      "item": "enderport:crystal_of_dimension"
+    },
+    "C": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "id": "enderport:enderport_stick",
+    "count": 1
+  },
+  "group": "COMBAT"
+}
