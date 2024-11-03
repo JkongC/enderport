@@ -18,7 +18,7 @@ public class LightedAirBlock extends AirBlock {
 
     public LightedAirBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(this.getAgeProperty(), Integer.valueOf(0)));
+        this.setDefaultState(this.stateManager.getDefaultState().with(this.getAgeProperty(), 0));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class LightedAirBlock extends AirBlock {
     }
 
     public BlockState withAge(int age) {
-        return this.getDefaultState().with(this.getAgeProperty(), Integer.valueOf(age));
+        return this.getDefaultState().with(this.getAgeProperty(), age);
     }
 
     public int getAge(BlockState state) {

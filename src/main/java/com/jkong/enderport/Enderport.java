@@ -2,7 +2,6 @@ package com.jkong.enderport;
 
 import com.jkong.enderport.blocks.EPBlocks;
 import com.jkong.enderport.components.EPComponents;
-import com.jkong.enderport.enchantments.EPEnchantments;
 import com.jkong.enderport.items.EPItems;
 import net.fabricmc.api.ModInitializer;
 
