@@ -1,5 +1,6 @@
 {
   "item.enderport.enderport_stick": "Enderport Stick",
   "item.enderport.powder_of_twist": "Powder of Twist",
-  "item.enderport.crystal_of_dimension": "Crystal of Dimension"
+  "item.enderport.crystal_of_dimension": "Crystal of Dimension",
+  "item.enderport.enderport_stick.soulcounter": "%1$s Endersouls"
 }

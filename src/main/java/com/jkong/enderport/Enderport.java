@@ -1,5 +1,9 @@
 package com.jkong.enderport;
 
+import com.jkong.enderport.blocks.EPBlocks;
+import com.jkong.enderport.components.EPComponents;
+import com.jkong.enderport.enchantments.EPEnchantments;
+import com.jkong.enderport.items.EPItems;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -18,9 +22,9 @@ public class Enderport implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
-
-		LOGGER.info("Hello Fabric world!");
-
-		ModItems.Initialize();
+		LOGGER.info("Initializing Enderport");
+		EPItems.Initialize();
+		EPBlocks.Initialize();
+		EPComponents.Initialize();
 	}
 }

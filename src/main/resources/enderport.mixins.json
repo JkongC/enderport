@@ -1,11 +1,12 @@
 {
-	"required": true,
-	"package": "com.jkong.enderport.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ExampleMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "com.jkong.enderport.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractBlockAccessor",
+    "LightRedirect"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
