@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public class LightRedirect {
-    @Inject(method = "getLuminance()I", at = @At(value = "RETURN"), cancellable = true)
+    @Inject(method = "getLuminance", at = @At(value = "RETURN"), cancellable = true)
     public void getLuminance(CallbackInfoReturnable<Integer> cir){
         if ((Object)this instanceof BlockState state) {
             if (state.getBlock() instanceof LightedAirBlock) {

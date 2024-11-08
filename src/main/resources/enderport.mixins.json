@@ -3,8 +3,9 @@
   "package": "com.jkong.enderport.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "AbstractBlockAccessor",
-    "LightRedirect"
+    "LightRedirect",
+    "LivingEntityMixin",
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

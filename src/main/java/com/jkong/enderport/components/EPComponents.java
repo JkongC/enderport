@@ -12,7 +12,17 @@ public class EPComponents {
             Identifier.of("enderport", "endersouls"),
             ComponentType.<Integer>builder().codec(Codec.INT).build()
     );
-    public static final int MAX_ENDERSOULS = 100;
+    public static final int MAX_ENDERSOULS = 200;
+
+    public static final ComponentType<Integer> SOULS_TO_BE_ADDED = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of("enderport", "souls_to_be_added"),
+            ComponentType.<Integer>builder().codec(Codec.INT).build()
+    );
 
     public static void Initialize(){}
+
+    public static int getMaxEndersouls() {
+        return MAX_ENDERSOULS;
+    }
 }

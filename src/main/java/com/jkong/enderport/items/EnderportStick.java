@@ -2,7 +2,7 @@ package com.jkong.enderport.items;
 
 import com.jkong.enderport.components.EPComponents;
 import com.jkong.enderport.enchantments.EnchantmentsAcceptable;
-import com.jkong.enderport.mixin.AbstractBlockAccessor;
+import com.jkong.enderport.manager.StatsHolder;
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
@@ -21,6 +21,7 @@ import net.minecraft.item.ToolMaterials;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -55,9 +56,8 @@ public class EnderportStick extends SwordItem {
         for(int i = 0; i < 10; i++) {
             BlockPos posHead = OriginalPos.offset(Direction.Axis.X, (int)Math.round(i*posD.getX())).offset(Direction.Axis.Y, (int)Math.round(i*posD.getY())).offset(Direction.Axis.Z, (int)Math.round(i*posD.getZ())).offset(Direction.UP, 1);
             BlockState stateHead = world.getBlockState(posHead);
-            boolean Collidable = ((AbstractBlockAccessor) stateHead.getBlock()).getCollidable();
 
-            if (Collidable) {
+            if (stateHead.getBlock().collidable) {
                 if (i <= 4) {
                     return TypedActionResult.pass(user.getStackInHand(hand));
                 } else {
@@ -74,7 +74,7 @@ public class EnderportStick extends SwordItem {
             }
 
 
-            if (!(world.getBlockState(tryPos).getBlock() instanceof AirBlock || world.getBlockState(tryPos).getBlock() instanceof FluidBlock)) {
+            if (world.getBlockState(tryPos).getBlock().collidable) {
                 tryPos = tryPos.offset(Direction.UP,1);
                 trytime++;
             } else {break;}
@@ -88,6 +88,7 @@ public class EnderportStick extends SwordItem {
         user.fallDistance = 0;
         user.playSoundToPlayer(ENTITY_ENDERMAN_TELEPORT, SoundCategory.VOICE,0.6f, 0.9f);
         user.getItemCooldownManager().set(this, 6);
+        ((StatsHolder) user).setStillTicks(40);
         user.getStackInHand(hand).damage(1, user, hand.name().equals("main_hand") ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
         return TypedActionResult.success(user.getStackInHand(hand));
 
@@ -120,10 +121,17 @@ public class EnderportStick extends SwordItem {
             soul = attackerStack.getOrDefault(EPComponents.ENDERSOULS, 0);
             if (soul >= 60) {
                 if (soul >= 100) {
+                    if (soul == EPComponents.getMaxEndersouls()) {
+                        damageThis(attackerStack, attacker, 80);
+                        return 300.0F;
+                    }
+                    damageThis(attackerStack, attacker, 50);
                     return 120.0F + (soul - 100);
                 }
+                damageThis(attackerStack, attacker, 30);
                 return 70.0F;
             }
+            damageThis(attackerStack, attacker, 20);
             return 10.0F;
         }
 
@@ -131,25 +139,50 @@ public class EnderportStick extends SwordItem {
     }
 
     @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
-        if (!target.isDead()) {return true;}
+        if (!target.isDead() || !(attacker instanceof PlayerEntity player)) return;
 
         if (target instanceof EndermanEntity){
-            if (attacker instanceof PlayerEntity){
-                if (attacker.getStackInHand(Hand.MAIN_HAND).getItem() instanceof EnderportStick || attacker.getStackInHand(Hand.OFF_HAND).getItem() instanceof EnderportStick){
-                    stack.damage(-40,attacker,attacker.getStackInHand(Hand.MAIN_HAND).getItem() instanceof EnderportStick ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-                }
-            }
+            damageThis(stack, player, -40);
         } else if (target instanceof WardenEntity || target instanceof EnderDragonEntity || target instanceof WitherEntity){
-            if (attacker instanceof PlayerEntity){
-                stack.damage(-1500, attacker, attacker.getStackInHand(Hand.MAIN_HAND).getItem() instanceof EnderportStick ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-                if (target instanceof EnderDragonEntity && stack.getOrDefault(EPComponents.ENDERSOULS, 0) < EPComponents.MAX_ENDERSOULS){
-                    stack.set(EPComponents.ENDERSOULS, stack.getOrDefault(EPComponents.ENDERSOULS, 0) + 1);
-                }
-            }
+            damageThis(stack, player, -1500);
+            stack.set(EPComponents.SOULS_TO_BE_ADDED, 1);
         }
-        return true;
+    }
+
+    public void addPlayerEndersouls(PlayerEntity player, int num) {
+        ((StatsHolder) player).setEndersouls(getPlayerEndersouls(player) + num);
+    }
+
+    public void setPlayerEndersouls(PlayerEntity player, int num) {
+        ((StatsHolder) player).setEndersouls(num);
+    }
+
+    public int getPlayerEndersouls(PlayerEntity player) {
+        return ((StatsHolder) player).getEndersouls();
+    }
+
+    private void damageThis(ItemStack stack, LivingEntity attacker, int damage) {
+        stack.damage(damage, attacker, attacker.getStackInHand(Hand.MAIN_HAND).getItem() instanceof EnderportStick ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (entity instanceof PlayerEntity player && world instanceof ServerWorld) {
+            if (stack.getOrDefault(EPComponents.SOULS_TO_BE_ADDED, 0) != 0) {
+                for (PlayerEntity playero : world.getPlayers()) {
+                    addPlayerEndersouls(playero, 1);
+                }
+                stack.set(EPComponents.SOULS_TO_BE_ADDED, 0);
+            }
+
+            if (getPlayerEndersouls(player) > EPComponents.getMaxEndersouls()) {
+                setPlayerEndersouls(player, EPComponents.getMaxEndersouls());
+            }
+
+            stack.set(EPComponents.ENDERSOULS, getPlayerEndersouls(player));
+        }
     }
 
     @Override
