@@ -66,7 +66,7 @@ public class EnderportStick extends SwordItem {
             }
         }
 
-        BlockPos tryPos = OriginalPos.offset(Direction.Axis.X, (int)Math.round(blockCount*posD.getX())).offset(Direction.Axis.Y, (int)Math.round(blockCount*posD.getY())).offset(Direction.Axis.Z, (int)Math.round(blockCount*posD.getZ()));
+        BlockPos tryPos = OriginalPos.offset(Direction.Axis.X, (int)Math.round(blockCount*posD.getX())).offset(Direction.Axis.Y, (int)Math.round(blockCount*posD.getY())+1).offset(Direction.Axis.Z, (int)Math.round(blockCount*posD.getZ()));
 
         while (true){
             if (trytime > 8) {
