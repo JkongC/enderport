@@ -1,5 +1,7 @@
 package com.jkong.enderport.mixin;
 
+import com.jkong.enderport.PlayerStats;
+import com.jkong.enderport.StatsSaverAndLoader;
 import com.jkong.enderport.manager.StatsHolder;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -18,18 +20,24 @@ public abstract class PlayerEntityMixin extends LivingEntity implements StatsHol
     }
 
     @Unique
-    protected int endersouls;
+    protected PlayerStats stats;
 
     @Unique
     @Override
     public int getEndersouls(){
-        return this.endersouls;
+        if (this.stats == null){
+            this.stats = StatsSaverAndLoader.getPlayerStats(this);
+        }
+        return this.stats.endersouls;
     }
 
     @Unique
     @Override
     public void setEndersouls(int newEndersouls){
-        this.endersouls = newEndersouls;
+        this.stats.endersouls = newEndersouls;
+        StatsSaverAndLoader serverState = StatsSaverAndLoader.getServerState(this.getWorld().getServer());
+        serverState.playerStats.put(this.getUuid(), this.stats);
+        serverState.markDirty();
     }
 
     @Unique
