@@ -1,5 +1,6 @@
-package com.jkong.enderport;
+package com.jkong.enderport.manager;
 
+import com.jkong.enderport.PlayerStats;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;

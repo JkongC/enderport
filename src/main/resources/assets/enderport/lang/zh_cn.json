@@ -2,5 +2,7 @@
   "item.enderport.enderport_stick": "传送棒",
   "item.enderport.powder_of_twist": "扭曲之尘",
   "item.enderport.crystal_of_dimension": "空间宝石",
-  "item.enderport.enderport_stick.soulcounter": "末影魂魄：%1$s"
+  "item.enderport.dimension_pickaxe": "空间之镐",
+  "item.enderport.enderport_stick.soulcounter": "末影魂魄：%1$s",
+  "item.enderport.dimension_pickaxe.soulcounter": "末影魂魄：%1$s"
 }

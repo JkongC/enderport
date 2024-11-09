@@ -39,10 +39,10 @@ import static net.minecraft.sound.SoundEvents.ENTITY_ENDERMAN_TELEPORT;
 
 public class EnderportStick extends SwordItem {
 
-    public static final List<RegistryKey<Enchantment>> EnchantmentList = EnchantmentsAcceptable.getList();
+    public static final List<RegistryKey<Enchantment>> EnchantmentList = EnchantmentsAcceptable.getListOfStick();
 
     public EnderportStick() {
-        super(ToolMaterials.DIAMOND,(new Settings()).fireproof().rarity(Rarity.EPIC).component(EPComponents.ENDERSOULS, 0).attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.DIAMOND,10,-2.4F)));
+        super(ToolMaterials.DIAMOND, (new Settings()).fireproof().rarity(Rarity.EPIC).component(EPComponents.ENDERSOULS, 0).attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.DIAMOND,10,-2.4F)));
     }
 
     @Override
@@ -147,7 +147,11 @@ public class EnderportStick extends SwordItem {
             damageThis(stack, player, -40);
         } else if (target instanceof WardenEntity || target instanceof EnderDragonEntity || target instanceof WitherEntity){
             damageThis(stack, player, -1500);
-            stack.set(EPComponents.SOULS_TO_BE_ADDED, 1);
+            if (player.getWorld() instanceof ServerWorld) {
+                for (PlayerEntity eachPlayer : player.getWorld().getPlayers()) {
+                    addPlayerEndersouls(eachPlayer, 1);
+                }
+            }
         }
     }
 
@@ -170,19 +174,22 @@ public class EnderportStick extends SwordItem {
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (entity instanceof PlayerEntity player && world instanceof ServerWorld) {
-            if (stack.getOrDefault(EPComponents.SOULS_TO_BE_ADDED, 0) != 0) {
-                for (PlayerEntity playero : world.getPlayers()) {
-                    addPlayerEndersouls(playero, 1);
-                }
-                stack.set(EPComponents.SOULS_TO_BE_ADDED, 0);
-            }
-
             if (getPlayerEndersouls(player) > EPComponents.getMaxEndersouls()) {
                 setPlayerEndersouls(player, EPComponents.getMaxEndersouls());
             }
 
             stack.set(EPComponents.ENDERSOULS, getPlayerEndersouls(player));
         }
+    }
+
+    @Override
+    public int getEnchantability(){
+        return 22;
+    }
+
+    @Override
+    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
+        return false;
     }
 
     @Override
