@@ -25,6 +25,5 @@ public class Enderport implements ModInitializer {
 		EPItems.Initialize();
 		EPBlocks.Initialize();
 		EPComponents.Initialize();
-
 	}
 }
