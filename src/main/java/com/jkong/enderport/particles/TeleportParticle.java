@@ -1,4 +1,4 @@
-package com.jkong.enderport.items;
+package com.jkong.enderport.particles;
 
 import com.jkong.enderport.blocks.LightedAirBlock;
 import com.jkong.enderport.blocks.EPBlocks;
@@ -24,16 +24,14 @@ public class TeleportParticle {
         }
     }
 
-    public static void addParticleBetween(World world, PlayerEntity player, BlockPos origin, BlockPos destination) {
+    public static void addParticleBetween(World world, BlockPos origin, BlockPos destination) {
         Vec3d originPos = new Vec3d(origin.getX(), origin.getY(), origin.getZ());
         Vec3d trail = new Vec3d(destination.getX() - origin.getX(), destination.getY() - origin.getY(), destination.getZ() - origin.getZ());
 
         if (world.isClient()) {
             for (double i = 0; i <= 1; i = i + 0.01) {
-                if (player.getWorld().isClient) {
-                    player.getWorld().addParticle(ParticleTypes.PORTAL,originPos.getX()+i*trail.getX(),originPos.getY()+i*trail.getY(),originPos.getZ()+i*trail.getZ(),0,0,0);
-                    player.getWorld().addParticle(ParticleTypes.ENCHANT,originPos.getX()+i*trail.getX(),originPos.getY()+i*trail.getY()+0.65,originPos.getZ()+i*trail.getZ(),0,0,0);
-                }
+                world.addParticle(ParticleTypes.PORTAL,originPos.getX()+i*trail.getX(),originPos.getY()+i*trail.getY(),originPos.getZ()+i*trail.getZ(),0,0,0);
+                world.addParticle(ParticleTypes.ENCHANT,originPos.getX()+i*trail.getX(),originPos.getY()+i*trail.getY()+0.65,originPos.getZ()+i*trail.getZ(),0,0,0);
             }
         }
 

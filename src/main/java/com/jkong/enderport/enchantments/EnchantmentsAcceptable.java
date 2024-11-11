@@ -9,23 +9,39 @@ import java.util.Collections;
 import java.util.List;
 
 public class EnchantmentsAcceptable {
-    private static List<RegistryKey<Enchantment>> EnchantmentList = new ArrayList<>();
+    private static List<RegistryKey<Enchantment>> ENCHANTMENTS_OF_STICK = new ArrayList<>();
+    private static List<RegistryKey<Enchantment>> ENCHANTMENTS_OF_PICKAXE = new ArrayList<>();
 
     static {
-        EnchantmentList.add(Enchantments.SHARPNESS);
-        EnchantmentList.add(Enchantments.SWEEPING_EDGE);
-        EnchantmentList.add(Enchantments.SILK_TOUCH);
-        EnchantmentList.add(Enchantments.SMITE);
-        EnchantmentList.add(Enchantments.LOOTING);
-        EnchantmentList.add(Enchantments.BANE_OF_ARTHROPODS);
-        EnchantmentList.add(Enchantments.KNOCKBACK);
+        ENCHANTMENTS_OF_STICK.add(Enchantments.SHARPNESS);
+        ENCHANTMENTS_OF_STICK.add(Enchantments.SWEEPING_EDGE);
+        ENCHANTMENTS_OF_STICK.add(Enchantments.SILK_TOUCH);
+        ENCHANTMENTS_OF_STICK.add(Enchantments.SMITE);
+        ENCHANTMENTS_OF_STICK.add(Enchantments.LOOTING);
+        ENCHANTMENTS_OF_STICK.add(Enchantments.BANE_OF_ARTHROPODS);
+        ENCHANTMENTS_OF_STICK.add(Enchantments.KNOCKBACK);
 
-        EnchantmentList = Collections.unmodifiableList(EnchantmentList);
+        ENCHANTMENTS_OF_STICK = Collections.unmodifiableList(ENCHANTMENTS_OF_STICK);
+    }
+
+    static {
+        ENCHANTMENTS_OF_PICKAXE.add(Enchantments.EFFICIENCY);
+        ENCHANTMENTS_OF_PICKAXE.add(Enchantments.MENDING);
+        ENCHANTMENTS_OF_PICKAXE.add(Enchantments.FORTUNE);
+        ENCHANTMENTS_OF_PICKAXE.add(Enchantments.SILK_TOUCH);
+        ENCHANTMENTS_OF_PICKAXE.add(Enchantments.POWER);
+        ENCHANTMENTS_OF_PICKAXE.add(Enchantments.UNBREAKING);
+
+        ENCHANTMENTS_OF_PICKAXE = Collections.unmodifiableList(ENCHANTMENTS_OF_PICKAXE);
     }
 
     private EnchantmentsAcceptable() {}
 
-    public static List<RegistryKey<Enchantment>> getList() {
-        return EnchantmentList;
+    public static List<RegistryKey<Enchantment>> getListOfStick() {
+        return ENCHANTMENTS_OF_STICK;
+    }
+
+    public static List<RegistryKey<Enchantment>> getListOfPickaxe() {
+        return ENCHANTMENTS_OF_PICKAXE;
     }
 }

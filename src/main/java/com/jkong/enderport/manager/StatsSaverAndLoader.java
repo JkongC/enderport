@@ -1,4 +1,4 @@
-package com.jkong.enderport;
+package com.jkong.enderport.manager;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;

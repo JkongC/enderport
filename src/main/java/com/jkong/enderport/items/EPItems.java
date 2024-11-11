@@ -7,6 +7,7 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 public class EPItems {
 
@@ -20,17 +21,25 @@ public class EPItems {
             "enderport_stick",
             new EnderportStick());
 
+    public static final Item DIMENSION_PICKAXE = registerItem(
+            "dimension_pickaxe",
+            new DimensionPickaxe()
+    );
+
     public static final Item POWDER_OF_TWIST = registerItem(
             "powder_of_twist",
-            new Item(new Item.Settings()));
+            new Item(new Item.Settings().rarity(Rarity.EPIC)));
 
     public static final Item CRYSTAL_OF_DIMENSION = registerItem(
             "crystal_of_dimension",
-            new Item(new Item.Settings()));
+            new Item(new Item.Settings().rarity(Rarity.EPIC)));
 
     public static void Initialize() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
                 .register((itemGroup) -> itemGroup.add(EPItems.ENDERPORT_STICK));
+
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS)
+                .register((itemGroup) -> itemGroup.add(EPItems.DIMENSION_PICKAXE));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
                 .register((itemGroup) -> itemGroup.add(EPItems.POWDER_OF_TWIST));

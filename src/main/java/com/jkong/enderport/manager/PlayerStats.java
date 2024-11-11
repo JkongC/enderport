@@ -1,4 +1,4 @@
-package com.jkong.enderport;
+package com.jkong.enderport.manager;
 
 public class PlayerStats {
     public int endersouls;

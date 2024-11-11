@@ -3,6 +3,8 @@
   "package": "com.jkong.enderport.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AbstractBlockMixin",
+    "BlockMixin",
     "LightRedirect",
     "LivingEntityMixin",
     "PlayerEntityMixin"
