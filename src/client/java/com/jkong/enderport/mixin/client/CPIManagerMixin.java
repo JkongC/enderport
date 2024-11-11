@@ -4,7 +4,6 @@ import com.jkong.enderport.components.EPComponents;
 import com.jkong.enderport.items.DimensionPickaxe;
 import com.jkong.enderport.particles.SpBreakParticle;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.entity.player.PlayerInventory;
