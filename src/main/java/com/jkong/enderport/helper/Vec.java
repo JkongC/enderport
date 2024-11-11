@@ -1,24 +1,29 @@
 package com.jkong.enderport.helper;
 
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 public class Vec {
 
     private Vec() {}
 
-    //Directly from Entity.class
+    //From Entity.class
     public static Vec3d getRotationVector(float pitch, float yaw) {
         float f = pitch * (float) (Math.PI / 180.0);
         float g = -yaw * (float) (Math.PI / 180.0);
-        float h = net.minecraft.util.math.MathHelper.cos(g);
-        float i = net.minecraft.util.math.MathHelper.sin(g);
-        float j = net.minecraft.util.math.MathHelper.cos(f);
-        float k = net.minecraft.util.math.MathHelper.sin(f);
+        float h = MathHelper.cos(g);
+        float i = MathHelper.sin(g);
+        float j = MathHelper.cos(f);
+        float k = MathHelper.sin(f);
         return new Vec3d(i * j, -k, h * j);
     }
 
-    public static Vec3d getRotationFrom(Vec3d vec, float pitch, float yaw, double length) {
-        Vec3d n = getRotationVector(pitch, yaw).normalize();
-        return new Vec3d(vec.x + n.x * length, vec.y + n.y * length, vec.y + n.y * length);
+    public static Vec3d getRotationVector(float pitch, float yaw, double length) {
+        Vec3d temp = getRotationVector(pitch, yaw);
+        return new Vec3d(length * temp.x, length * temp.y, length * temp.z);
+    }
+
+    public static Vec3d getVecFrom(Vec3d vec, Vec3d pointer) {
+        return new Vec3d(vec.x + pointer.x, vec.y + pointer.y, vec.z + pointer.z);
     }
 }

@@ -3,6 +3,7 @@ package com.jkong.enderport.items;
 import com.jkong.enderport.components.EPComponents;
 import com.jkong.enderport.enchantments.EnchantmentsAcceptable;
 import com.jkong.enderport.manager.StatsHolder;
+import com.jkong.enderport.particles.TeleportParticle;
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
@@ -49,7 +50,7 @@ public class EnderportStick extends SwordItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand){
 
         int blockCount = 9;
-        Vec3d posD = user.getRotationVector().normalize();
+        Vec3d posD = user.getRotationVector();
         BlockPos OriginalPos = user.getBlockPos();
         int trytime = 0;
 
@@ -81,8 +82,8 @@ public class EnderportStick extends SwordItem {
         }
 
 
-        user.setPosition(Vec3d.of(tryPos));
-        TeleportParticle.addParticleBetween(world, user, OriginalPos, tryPos);
+        user.setPosition(tryPos.toCenterPos());
+        TeleportParticle.addParticleBetween(world, OriginalPos, tryPos);
         TeleportParticle.addParticleTo(user);
         user.setVelocity(0,0,0);
         user.fallDistance = 0;

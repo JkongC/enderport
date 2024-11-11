@@ -1,6 +1,6 @@
 package com.jkong.enderport.mixin;
 
-import com.jkong.enderport.PlayerStats;
+import com.jkong.enderport.manager.PlayerStats;
 import com.jkong.enderport.manager.StatsSaverAndLoader;
 import com.jkong.enderport.manager.StatsHolder;
 import net.minecraft.entity.EntityType;
