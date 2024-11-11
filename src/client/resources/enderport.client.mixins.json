@@ -3,6 +3,7 @@
   "package": "com.jkong.enderport.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "CPIManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

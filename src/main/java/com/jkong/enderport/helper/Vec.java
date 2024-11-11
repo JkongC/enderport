@@ -26,4 +26,8 @@ public class Vec {
     public static Vec3d getVecFrom(Vec3d vec, Vec3d pointer) {
         return new Vec3d(vec.x + pointer.x, vec.y + pointer.y, vec.z + pointer.z);
     }
+
+    public static Vec3d lengthenVec(Vec3d vec, double rate) {
+        return new Vec3d(vec.x * rate, vec.y * rate, vec.z * rate);
+    }
 }
