@@ -26,7 +26,7 @@ public class DimensionPickaxe extends PickaxeItem {
     public static final List<RegistryKey<Enchantment>> EnchantmentList = EnchantmentsAcceptable.getListOfPickaxe();
 
     public DimensionPickaxe() {
-        super(ToolMaterials.DIAMOND, (new Settings()).fireproof().rarity(Rarity.EPIC).component(EPComponents.ENDERSOULS, 0).attributeModifiers(PickaxeItem.createAttributeModifiers(ToolMaterials.DIAMOND,4.0F,-2.8F)));
+        super(ToolMaterials.NETHERITE, (new Settings()).fireproof().rarity(Rarity.EPIC).component(EPComponents.ENDERSOULS, 0).attributeModifiers(PickaxeItem.createAttributeModifiers(ToolMaterials.NETHERITE,4.0F,-2.8F)));
     }
 
     @Override

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    " S ",
+    " A "
+  ],
+  "key": {
+    "C": {
+      "item": "enderport:crystal_of_dimension"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "id": "enderport:dimension_pickaxe",
+    "count": 1
+  },
+  "group": "TOOL"
+}
