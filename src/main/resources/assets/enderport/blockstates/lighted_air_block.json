@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "brightness=0": { "model": "enderport:block/lighted_air_block" },
+    "brightness=1": { "model": "enderport:block/lighted_air_block" },
+    "brightness=2": { "model": "enderport:block/lighted_air_block" },
+    "brightness=3": { "model": "enderport:block/lighted_air_block" },
+    "brightness=4": { "model": "enderport:block/lighted_air_block" },
+    "brightness=5": { "model": "enderport:block/lighted_air_block" },
+    "brightness=6": { "model": "enderport:block/lighted_air_block" },
+    "brightness=7": { "model": "enderport:block/lighted_air_block" },
+    "brightness=8": { "model": "enderport:block/lighted_air_block" },
+    "brightness=9": { "model": "enderport:block/lighted_air_block" },
+    "brightness=10": { "model": "enderport:block/lighted_air_block" },
+    "brightness=11": { "model": "enderport:block/lighted_air_block" },
+    "brightness=12": { "model": "enderport:block/lighted_air_block" },
+    "brightness=13": { "model": "enderport:block/lighted_air_block" },
+    "brightness=14": { "model": "enderport:block/lighted_air_block" },
+    "brightness=15": { "model": "enderport:block/lighted_air_block" }
+  }
+}

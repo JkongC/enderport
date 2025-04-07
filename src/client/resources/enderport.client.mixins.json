@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.jkong.enderport.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "CPIManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "AbstractBlockStateMixin",
+    "ClientBlockMixin"
+  ]
+}

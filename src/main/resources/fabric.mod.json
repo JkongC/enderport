@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "enderport",
+	"version": "${version}",
+	"name": "Enderport",
+	"description": "Fun items about space!",
+	"authors": [
+		"jkong"
+	],
+	"contact": {
+		"homepage": "Nothing here!",
+		"sources": "https://github.com/JkongC/enderport"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/enderport/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.jkong.enderport.Enderport"
+		],
+		"client": [
+			"com.jkong.enderport.EnderportClient"
+		],
+		"fabric-datagen": [
+			"com.jkong.enderport.EnderportDataGenerator"
+		]
+	},
+	"mixins": [
+		"enderport.mixins.json",
+		{
+			"config": "enderport.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"accessWidener" : "ep.accesswidener",
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.5",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
